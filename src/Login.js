@@ -1,22 +1,47 @@
 import React, {useState} from 'react'
 import "./css/Login.css"
-import {Link}  from "react-router-dom"
+import {Link, useHistory}  from "react-router-dom";
+import {auth} from "./firebase"
 
 function Login() {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+	 const history = useHistory();
 
 	function handleEmail(event){
 		setEmail(event.target.value);
 	}
+
+	
 	function handlePassword(event){
 		setPassword(event.target.value);
 	}
+
+
 	function handleSignin(event){
 		event.preventDefault();
+		auth.signInWithEmailAndPassword(email, password)
+		  .then((userCredential) => {
+		    history.push("/")
+		  })
+		  .catch((error) => {
+		    alert(error.message)
+		  });
 	}
+
+
 	function handleSignup(event){
 		event.preventDefault();
+		 auth
+            .createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+                // it successfully created a new user with email and password
+                if (auth) {
+                    history.push('/')
+                }
+            })
+            .catch(error => alert(error.message))
+
 	}
 
 	return (
@@ -32,11 +57,11 @@ function Login() {
 					<input type="text" value={email} onChange={handleEmail}/>
 					<h5>Password</h5>
 					<input type="Password" value={password} onChange={handlePassword}/>
-					<button onclick={handleSignin} className="login_signin">Sign in</button>
+					<button onClick={handleSignin} type="submit" className="login_signin">Sign in</button>
 				</form>
 				<p >By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
 
-				<button onclick={handleSignup} className="login_signup">Add new account</button>
+				<button onClick={handleSignup} type="submit" className="login_signup">Add new account</button>
 			</div>
 			
 		</div>
