@@ -10,12 +10,24 @@
   min-width: 100px;
   background-color: white;
   z-index: 1;
+  transition: transform .2s;
+}
+.product:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.02); 
 }
 .product > img {
   max-height: 200px;
   width: 100%;
   object-fit: contain;
   margin-bottom: 15px;
+  transition: transform .4s;
+}
+.product > img:hover{
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.05); 
 }
 .product > button {
   background: #f0c14b;
@@ -28,4 +40,13 @@
 }
 .product_rating{
   display: flex;
+}
+button{
+  cursor: pointer;
+  transition: transform .5s;
+}
+button:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.05); 
 }
