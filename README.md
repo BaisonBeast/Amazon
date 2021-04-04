@@ -1,4 +1,4 @@
-link of the project:- https://clone-5d997.web.app/
+Link of the project:- https://clone-5d997.web.app/
 
 
 # Getting Started with Create React App
